@@ -1,38 +1,32 @@
 class Morse
   def initialize
     @dict = {
-        'а' => '.-',
-        'б' => '-···',
-        'в' => '.--',
-        'г' => '--.',
-        'д' => '-..',
-        'е' => '.',
-        'ж' => '...-',
-        'з' => '--..',
-        'и' => '..',
-        'й' => '.---',
-        'к' => '-.-',
-        'л' => '.-..',
-        'м' => '--',
-        'н' => '-.',
-        'о' => '---',
-        'п' => '.--.',
-        'р' => '.-.',
-        'с' => '...',
-        'т' => '-',
-        'у' => '..-',
-        'ф' => '..-.',
-        'х' => '....',
-        'ц' => '-.-.',
-        'ч' => '---.',
-        'ш' => '----',
-        'щ' => '--.-',
-        'ъ' => '--.--',
-        'ы' => '-.--',
-        'ь' => '-.--',
-        'э' => '..-..',
-        'ю' => '..--',
-        'я' => '.-.-',
+        'a' => '.-',
+        'b' => '-...',
+        'c' => '-.-.',
+        'd' => '-..',
+        'e' => '.',
+        'f' => '..-.',
+        'g' => '--.',
+        'h' => '....',
+        'i' => '..',
+        'j' => '.---',
+        'k' => '-.-',
+        'l' => '.-..',
+        'm' => '--',
+        'n' => '-.',
+        'o' => '---',
+        'p' => '.--.',
+        'q' => '--.-',
+        'r' => '.-.',
+        's' => '...',
+        't' => '-',
+        'u' => '..-',
+        'v' => '...-',
+        'w' => '.--',
+        'x' => '-..-',
+        'y' => '-.--',
+        'z' => '--..',
         ' ' => '  ',
         '1' => '.----',
         '2' => '..---',
@@ -45,18 +39,28 @@ class Morse
         '9' => '---.',
         '0' => '-----'
     }
-    @encode_dict = @dict.invert
+    @decode_dict = @dict.invert
+    @option = nil
     @text = nil
     @result = nil
   end
 
+  def mode
+    option = nil
+
+    until (1..2).include? option
+      print "Choose operation mode (1 - encode / 2 - decode): "
+      option = STDIN.gets.to_i
+    end
+    @option = option
+  end
+
   def inputStr
-    puts "Введите текст для конвертации: "
-    print ">> "
+    puts "Type a text: "
     str = STDIN.gets.chomp.downcase
     @text = str
-    #decode(@text)
-    #encode(@text)
+
+    @option == 1 ? encode(@text) : decode(@text)
   end
 
   def encode(text)
@@ -91,8 +95,8 @@ class Morse
 
     letters.each do |item|
       item.each do |item|
-        if @encode_dict.has_key?(item)
-          convert_letters << @encode_dict[item]
+        if @decode_dict.has_key?(item)
+          convert_letters << @decode_dict[item]
         end
       end
       convert_letters << " "

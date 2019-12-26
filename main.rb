@@ -1,5 +1,6 @@
 require_relative 'morse'
 
-converter = Morse.new
-converter.inputStr
-puts converter.result
+convert = Morse.new
+convert.mode
+convert.inputStr
+puts convert.result
