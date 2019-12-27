@@ -108,6 +108,24 @@ class Morse
     @result = convert_letters.join('')
   end
 
+  def sound
+    letters = @text.split("")
+
+    paths = Array.new
+
+    current_path = __dir__
+
+    letters.each do |item|
+      paths << current_path + "/sound/" + item + ".ogg"
+    end
+
+    paths.size.times do |i|
+      system("play " + paths[i])
+      sleep 1
+    end
+
+  end
+
   def text
     @text
   end
