@@ -1,45 +1,7 @@
 class Morse
-  def initialize
-    @dict = {
-        'a' => '.-',
-        'b' => '-...',
-        'c' => '-.-.',
-        'd' => '-..',
-        'e' => '.',
-        'f' => '..-.',
-        'g' => '--.',
-        'h' => '....',
-        'i' => '..',
-        'j' => '.---',
-        'k' => '-.-',
-        'l' => '.-..',
-        'm' => '--',
-        'n' => '-.',
-        'o' => '---',
-        'p' => '.--.',
-        'q' => '--.-',
-        'r' => '.-.',
-        's' => '...',
-        't' => '-',
-        'u' => '..-',
-        'v' => '...-',
-        'w' => '.--',
-        'x' => '-..-',
-        'y' => '-.--',
-        'z' => '--..',
-        ' ' => '  ',
-        '1' => '.----',
-        '2' => '..---',
-        '3' => '...--',
-        '4' => '....-',
-        '5' => '.....',
-        '6' => '-....',
-        '7' => '--...',
-        '8' => '---..',
-        '9' => '---.',
-        '0' => '-----'
-    }
-    @decode_dict = @dict.invert
+  def initialize(dict, decode_dict)
+    @dict = dict
+    @decode_dict = decode_dict
     @option = nil
     @text = nil
     @result = nil
@@ -49,14 +11,14 @@ class Morse
     option = nil
 
     until (1..2).include? option
-      print "Choose operation mode (1 - encode / 2 - decode): "
+      print 'Choose operation mode (1 - encode / 2 - decode): '
       option = STDIN.gets.to_i
     end
     @option = option
   end
 
-  def inputStr
-    puts "Type a text: "
+  def input_str
+    puts 'Type a text: '
     str = STDIN.gets.chomp.downcase
     @text = str
 
@@ -71,66 +33,59 @@ class Morse
 
     # конвертация букв
     letters.each do |item|
-      if @dict.has_key?(item)
-        x = @dict[item] + " "
+      if @dict.key?(item)
+        x = @dict[item] + ' '
         convert_letters << x
       end
     end
 
     # результат конвертирования
-    puts "Результат:"
+    puts 'Результат:'
     @result = convert_letters.join('')
   end
 
   def decode(text)
-    words = text.split("    ")
+    words = text.split('    ')
 
     letters = []
 
     words.each do |item|
-      letters << item.split(" ")
+      letters << item.split(' ')
     end
 
     convert_letters = []
 
     letters.each do |item|
       item.each do |item|
-        if @decode_dict.has_key?(item)
-          convert_letters << @decode_dict[item]
-        end
+        convert_letters << @decode_dict[item] if @decode_dict.key?(item)
       end
-      convert_letters << " "
+      convert_letters << ' '
     end
 
     convert_letters.pop
 
-    puts "Результат:"
+    puts 'Результат:'
     @result = convert_letters.join('')
   end
 
   def sound
-    letters = @text.split("")
+    letters = @text.split('')
 
-    paths = Array.new
+    paths = []
 
     current_path = __dir__
 
     letters.each do |item|
-      paths << current_path + "/sound/" + item + ".ogg"
+      paths << current_path + '/sound/' + item + '.ogg'
     end
 
     paths.size.times do |i|
-      system("play " + paths[i])
+      system('play ' + paths[i])
       sleep 1
     end
-
   end
 
-  def text
-    @text
-  end
+  attr_reader :text
 
-  def result
-    @result
-  end
+  attr_reader :result
 end

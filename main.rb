@@ -1,8 +1,11 @@
 require_relative 'morse'
+require_relative 'dictionary'
 
-convert = Morse.new
-convert.mode
-convert.inputStr
+dictionary = Dictionary.new
+content = Morse.new(dictionary.dict, dictionary.decode_dict)
 
-puts convert.result
-convert.sound
+content.mode
+content.input_str
+
+puts content.result
+content.sound
