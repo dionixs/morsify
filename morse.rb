@@ -57,7 +57,7 @@ class Morse
     end
 
     # результат конвертирования
-    puts 'Результат:'
+    puts 'Result:'
     @result = convert_letters.join('')
   end
 
@@ -97,7 +97,7 @@ class Morse
 
     convert_letters.pop
 
-    puts 'Результат:'
+    print 'Result: '
     @result = convert_letters.join('')
   end
 
