@@ -8,4 +8,4 @@ content.mode
 content.input_str
 
 puts content.result
-content.sound
+content.play

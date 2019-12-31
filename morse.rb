@@ -68,20 +68,35 @@ class Morse
     @result = convert_letters.join('')
   end
 
-  def sound
+  # Text to Audio Morse
+  def play
+    # разбиваем слово на буквы, включая пробелы
     letters = @text.split('')
 
+    # массив путей к файлам
     paths = []
 
+    # абсолютный путь к папке с программой
     current_path = __dir__
 
+    # создаем массив путей к файлам
     letters.each do |item|
-      paths << current_path + '/sound/' + item + '.ogg'
+      if item == " "
+        paths << item
+      else
+        paths << current_path + '/sound/' + item + '.ogg'
+      end
     end
 
+    # проигрываем звуки которые содержатся в слове
     paths.size.times do |i|
-      system('play ' + paths[i])
-      sleep 1
+      # если текущий элемент - пробел, то это означает паузу в 2 сек.
+      if paths[i] == " "
+        sleep 2
+      else
+        system('play ' + paths[i])
+        sleep 0.5
+      end
     end
   end
 
