@@ -1,33 +1,50 @@
+require 'translit'
+
 class Morse
   def initialize(dict, decode_dict)
     @dict = dict
     @decode_dict = decode_dict
-    @option = nil
     @text = nil
     @result = nil
   end
 
-  def mode
+  # Режимы работы
+  def switch
+    puts "Morse Code: Main Menu\n"
+    puts "\t1: Text to Morse\n\t2: Morse to Text\n\t3: Text to Audio Morse\n\t4: Exit"
+
     option = nil
 
-    until (1..2).include? option
-      print 'Choose operation mode (1 - encode / 2 - decode): '
+    until (1..4).include? option
+      print "Your choice: "
       option = STDIN.gets.to_i
     end
-    @option = option
+
+    # переключение режимов
+    encode if option == 1
+    decode if option == 2
+    play if option == 3
+
+    exit if option == 4
   end
 
-  def input_str
-    puts 'Type a text: '
+  # получение строки введенной пользователем
+  def get_string
+    print 'Type a text: '
     str = STDIN.gets.chomp.downcase
     @text = str
-
-    @option == 1 ? encode(@text) : decode(@text)
   end
 
-  def encode(text)
+  # Text to Morse
+  def encode
+    # получаем строку
+    get_string
+
+    # конвертация, на случай того если слово/текст содержит кириллицу
+    @text = Translit.convert(@text, :english)
+
     # разбиваем строку на буквы, включая пробелы
-    letters = text.split('')
+    letters = @text.split('')
 
     convert_letters = []
 
@@ -44,21 +61,37 @@ class Morse
     @result = convert_letters.join('')
   end
 
-  def decode(text)
-    words = text.split('    ')
+  # Morse to Text
+  #
+  # Для упрощения в режиме decode:
+  # Между одним символом азбуки морзе, используется один пробел.
+  # Между словами отступ равен 4 пробелам.
+  # К примеру: "... --- ...    ... --- ...".
+  def decode
+    # получаем строку
+    get_string
 
+    # разбиваем строку на массив слов
+    words = @text.split('    ')
+
+    # массив, содержащий вложенные массивы
+    # в которых слова разбиты на символы азбуки морзе
     letters = []
 
+    # разбиваем слова на символы азбуки морзе
     words.each do |item|
       letters << item.split(' ')
     end
 
+    # массив для хранения расшифрованных букв
     convert_letters = []
 
+    # расшифровка слов
     letters.each do |item|
       item.each do |item|
         convert_letters << @decode_dict[item] if @decode_dict.key?(item)
       end
+      # добавляем пробел после каждого слова
       convert_letters << ' '
     end
 
@@ -70,6 +103,9 @@ class Morse
 
   # Text to Audio Morse
   def play
+    # получаем строку
+    get_string
+
     # разбиваем слово на буквы, включая пробелы
     letters = @text.split('')
 
@@ -99,8 +135,6 @@ class Morse
       end
     end
   end
-
-  attr_reader :text
 
   attr_reader :result
 end
