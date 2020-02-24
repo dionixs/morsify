@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    translit (0.1.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  translit
+
+BUNDLED WITH
+   2.1.2

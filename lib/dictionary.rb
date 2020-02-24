@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 class Dictionary
+  attr_accessor :dict, :decode_dict
+
   def initialize
     @dict = {
       'a' => '.-', 'b' => '-...', 'c' => '-.-.', 'd' => '-..', 'e' => '.',
@@ -12,7 +16,4 @@ class Dictionary
     }
     @decode_dict = @dict.invert
   end
-
-  attr_reader :dict
-  attr_reader :decode_dict
 end

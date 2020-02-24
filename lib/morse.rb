@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'translit'
 
 class Morse
+  attr_accessor :result
+
   def initialize(dict, decode_dict)
     @dict = dict
     @decode_dict = decode_dict
@@ -16,7 +20,7 @@ class Morse
     option = nil
 
     until (1..4).include? option
-      print "Your choice: "
+      print 'Your choice: '
       option = STDIN.gets.to_i
     end
 
@@ -117,17 +121,17 @@ class Morse
 
     # создаем массив путей к файлам
     letters.each do |item|
-      if item == " "
-        paths << item
-      else
-        paths << current_path + '/sound/' + item + '.ogg'
-      end
+      paths << if item == ' '
+                 item
+               else
+                 current_path + '/sound/' + item + '.ogg'
+               end
     end
 
     # проигрываем звуки которые содержатся в слове
     paths.size.times do |i|
       # если текущий элемент - пробел, то это означает паузу в 2 сек.
-      if paths[i] == " "
+      if paths[i] == ' '
         sleep 2
       else
         system('play ' + paths[i])
@@ -135,6 +139,4 @@ class Morse
       end
     end
   end
-
-  attr_reader :result
 end
