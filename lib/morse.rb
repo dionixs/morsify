@@ -3,11 +3,11 @@
 require 'translit'
 
 class Morse
-  attr_accessor :result
+  include MorseCode
 
-  def initialize(dict, decode_dict)
-    @dict = dict
-    @decode_dict = decode_dict
+  def initialize
+    @dict = ENCODE_DICT
+    @decode_dict = DECODE_DICT
     @text = nil
     @result = nil
   end
@@ -139,4 +139,6 @@ class Morse
       end
     end
   end
+
+  attr_reader :result
 end
