@@ -35,16 +35,9 @@ Result: hello
 
 Трансляция текста в звуковые сигналы.
 
-### Использование
-Для запуска необходимо: 
-1) установить утилиту sox и зависимости к ней:
-
-`sudo apt install sox libsox-fmt-mp3`
-
-2) установить гем [translate](https://github.com/tjbladez/translit):
-
-`gem install translit`
-
 #### Запуск:
 
-```ruby main.rb```
+```
+bundle
+ruby morse.rb
+```
