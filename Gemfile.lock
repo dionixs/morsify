@@ -2,12 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     translit (0.1.5)
+    wavefile (1.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   translit
+  wavefile
 
 BUNDLED WITH
    2.1.2

@@ -3,3 +3,4 @@
 source 'https://rubygems.org'
 
 gem 'translit'
+gem 'wavefile'
