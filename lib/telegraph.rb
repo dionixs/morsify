@@ -23,7 +23,7 @@ module Telegraph
     end
 
     # результат конвертирования
-    convert_letters.join('')
+    convert_letters.join('').strip
   end
 
   # Morse to Text
