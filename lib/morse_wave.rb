@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'wavefile'
-require "pathname"
+require 'pathname'
 
 module Telegraph
-# Данный модуль, отвечает за запись фразы в файл, в формате .wav
+  # Данный модуль, отвечает за запись фразы в файл, в формате .wav
   module MorseWave
     include WaveFile
 
@@ -16,7 +18,7 @@ module Telegraph
 
       original_path = Pathname(__dir__)
 
-      current_path =  File.expand_path("../", original_path)
+      current_path =  File.expand_path('../', original_path)
 
       # создаем массив путей к файлам
       letters.each do |item|
@@ -29,7 +31,7 @@ module Telegraph
       end
 
       # создание .wav файла
-      Writer.new("append.wav", Format.new(:stereo, :pcm_16, 44100)) do |writer|
+      Writer.new('append.wav', Format.new(:stereo, :pcm_16, 44_100)) do |writer|
         paths.each do |file_name|
           Reader.new(file_name).each_buffer do |buffer|
             writer.write(buffer)
@@ -39,4 +41,3 @@ module Telegraph
     end
   end
 end
-

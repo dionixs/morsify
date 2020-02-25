@@ -2,6 +2,6 @@
 
 source 'https://rubygems.org'
 
-gem 'tty-prompt'
 gem 'translit'
+gem 'tty-prompt'
 gem 'wavefile'
