@@ -9,7 +9,7 @@ describe Telegraph do
   end
 
   it 'should do true' do
-    expect(Telegraph.text_to_morse('This is a test')).to eq '.... .. ...    .. ...    .-    - . ... -'
+    expect(Telegraph.text_to_morse('This is a test')).to eq '- .... .. ...    .. ...    .-    - . ... -'
   end
 
   it 'should do true' do
