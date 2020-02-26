@@ -83,15 +83,13 @@ module Telegraph
     # метод который проверяет, существуют ли файлы по заданному пути
     def self.check_paths(paths)
       paths.each do |path|
-        unless File.exist?(path)
-          abort "Файл #{path} не найден!"
-        end
+        abort "Файл #{path} не найден!" unless File.exist?(path)
       end
     end
 
     # метод который показывает куда был сохранен файл
     def self.view_save_path
-      #todo
+      # todo
     end
 
     # метод который отвечает за создание названия файла
@@ -105,6 +103,5 @@ module Telegraph
       date = Time.now
       date.strftime('%d-%m-%Y')
     end
-
   end
 end

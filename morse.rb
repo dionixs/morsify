@@ -31,7 +31,7 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit
 end
 
-# todo: refactoring
+# TODO: refactoring
 unless options[:encode].nil?
   puts Telegraph.text_to_morse(options[:encode])
   exit
