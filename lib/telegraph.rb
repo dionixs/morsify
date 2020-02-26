@@ -7,7 +7,7 @@ module Telegraph
 
   def self.text_to_morse(text)
     # конвертация, на случай того если слово/текст содержит кириллицу
-    text = Translit.convert(text, :english)
+    text = Translit.convert(text.downcase, :english)
 
     # массив букв включая пробелы
     letters = to_letters_array(text)

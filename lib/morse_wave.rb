@@ -4,40 +4,91 @@ require 'wavefile'
 require 'pathname'
 
 module Telegraph
-  # Данный модуль, отвечает за запись фразы в файл, в формате .wav
+  # Данный модуль, отвечает за запись фразы, в файл в формате .wav
   module MorseWave
     include WaveFile
 
-    def self.text_to_sound(text)
-      text = text.downcase
-      # разбиваем слово на буквы, включая пробелы
-      letters = text.split('')
+    # Текущий путь к папке с программой
+    ORIGINAL_PATH = Pathname(__dir__)
 
+    # Путь необходимый для создания массива путей к файлам.
+    # Возвращает в родительский католог
+    CURRENT_PATH = File.expand_path('../', ORIGINAL_PATH)
+
+    def self.text_to_wave(text)
+      # разбиваем слово на буквы, включая пробелы
+      letters = text.downcase.strip.split('')
+
+      # массив путей к файлам
+      paths = to_paths_array(letters)
+
+      # проверка существуют ли файлы по заданному пути
+      check_paths(paths)
+
+      # создаем имя будущего файла
+      file_of_name = generate_file_name
+
+      # cохраняем файл в формате .wav
+      write_to_wave(file_of_name, paths)
+    end
+
+    private
+
+    # метод который возвращает массив путей к файлам
+    def self.to_paths_array(letters)
       # массив путей к файлам
       paths = []
 
-      original_path = Pathname(__dir__)
-
-      current_path =  File.expand_path('../', original_path)
+      # массив букв где пробел заменен на 'separator'
+      chars = replace_white_space(letters)
 
       # создаем массив путей к файлам
-      letters.each do |item|
-        paths << if item == ' '
-                   # если текущий элемент - пробел, то это означает паузу в 2 сек.
-                   current_path + '/src/sound/' + 'separator' + '.wav'
-                 else
-                   current_path + '/src/sound/' + item + '.wav'
-                 end
-      end
+      chars.each { |char| paths << CURRENT_PATH + '/src/sound/' + char + '.wav' }
 
-      # создание .wav файла
-      Writer.new('append.wav', Format.new(:stereo, :pcm_16, 44_100)) do |writer|
+      # возвращаем массив путей к файлам
+      paths
+    end
+
+    # метод который заменяет пробелы на 'separator'
+    def self.replace_white_space(letters)
+      letters.map { |letter| letter == ' ' ? 'separator' : letter }
+    end
+
+    # метод который сохраняет звуки азбуки морзе в один файл
+    def self.write_to_wave(file_of_name, paths)
+      # создаем папку records, если она не была создана
+      Dir.mkdir('records') unless File.exist?('records')
+
+      # переходим в директорию records
+      Dir.chdir 'records'
+
+      Writer.new(file_of_name, Format.new(:stereo, :pcm_16, 44_100)) do |writer|
         paths.each do |file_name|
           Reader.new(file_name).each_buffer do |buffer|
             writer.write(buffer)
           end
         end
       end
+    end
+
+    # метод который проверяет, существуют ли файлы по заданному пути
+    def self.check_paths(paths)
+      paths.each do |path|
+        unless File.exist?(path)
+          abort "Файл #{path} не найден!"
+        end
+      end
+    end
+
+    # метод который показывает куда был сохранен файл
+    def self.view_save_path
+      #todo
+    end
+
+    # метод который отвечает за создание названия файла
+    def self.generate_file_name
+      date = Time.now
+      date.strftime('%d-%m-%Y %H:%M:%S') + '.wav'
     end
   end
 end
