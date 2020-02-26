@@ -57,7 +57,6 @@ module Telegraph
         convert_letters << x
       end
     end
-
     convert_letters
   end
 
@@ -76,7 +75,6 @@ module Telegraph
     words.each do |item|
       chars << item.split(' ')
     end
-
     chars
   end
 
@@ -93,7 +91,6 @@ module Telegraph
       # добавляем пробел после каждого слова
       convert_letters << ' '
     end
-
     convert_letters
   end
 end
