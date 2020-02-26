@@ -62,6 +62,15 @@ module Telegraph
       # переходим в директорию records
       Dir.chdir 'records'
 
+      # имя подпапки в формате: ('%d-%m-%Y')
+      name_of_folder = generate_name_folder
+
+      # refactoring
+      Dir.mkdir(name_of_folder) unless File.exist?(name_of_folder)
+
+      # refactoring
+      Dir.chdir name_of_folder
+
       Writer.new(file_of_name, Format.new(:stereo, :pcm_16, 44_100)) do |writer|
         paths.each do |file_name|
           Reader.new(file_name).each_buffer do |buffer|
@@ -88,7 +97,14 @@ module Telegraph
     # метод который отвечает за создание названия файла
     def self.generate_file_name
       date = Time.now
-      date.strftime('%d-%m-%Y %H:%M:%S') + '.wav'
+      date.strftime('%H-%M-%S') + '.wav'
     end
+
+    # метод который отвечает за создание имени папки
+    def self.generate_name_folder
+      date = Time.now
+      date.strftime('%d-%m-%Y')
+    end
+
   end
 end
