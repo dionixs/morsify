@@ -35,7 +35,7 @@ end
 
 encode = -> (text) { Telegraph.text_to_morse(text) }
 decode = -> (morse) { Telegraph.morse_to_text(morse) }
-wave = -> (text) { Telegraph::MorseWave.text_to_wave(text) }
+wave = -> (text) { MorseWave.text_to_wave(text) }
 
 options.each do |key, value|
   result = encode.call(value) if key.to_s == 'encode'
@@ -64,5 +64,5 @@ if options == {}
   # переключение режимов
   puts Telegraph.text_to_morse(user_input) if mode == 1
   puts Telegraph.morse_to_text(user_input) if mode == 2
-  puts Telegraph::MorseWave.text_to_wave(user_input) if mode == 3
+  puts MorseWave.text_to_wave(user_input) if mode == 3
 end
