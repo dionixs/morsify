@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-
+#
+# encoding: UTF-8
+#
 # frozen_string_literal: true
 
 require 'tty-prompt'
@@ -31,38 +33,36 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit
 end
 
-# TODO: refactoring
-unless options[:encode].nil?
-  puts Telegraph.text_to_morse(options[:encode])
-  exit
-end
+encode = -> (text) { Telegraph.text_to_morse(text) }
+decode = -> (morse) { Telegraph.morse_to_text(morse) }
+wave = -> (text) { Telegraph::MorseWave.text_to_wave(text) }
 
-unless options[:decode].nil?
-  puts Telegraph.morse_to_text(options[:decode])
-  exit
-end
-
-unless options[:wave].nil?
-  puts Telegraph::MorseWave.text_to_wave(options[:wave])
-  exit
+options.each do |key, value|
+  result = encode.call(value) if key.to_s == 'encode'
+  result = decode.call(value) if key.to_s == 'decode'
+  result = wave.call(value) if key.to_s == 'wave'
+  puts result
+  exit if !result.nil?
 end
 
 # Сценарий на случай того если пользователь
 # запустил программу без аргументов командной строки
-prompt = TTY::Prompt.new
+if options == {}
+  prompt = TTY::Prompt.new
 
-mode = prompt.select('Select the operation mode:') do |option|
-  option.choice name: 'Text to Morse',  value: 1
-  option.choice name: 'Morse to Text',  value: 2
-  option.choice name: 'Text to WAV File', value: 3
-  option.choice name: 'Exit',  value: 4
+  mode = prompt.select('Select the operation mode:') do |option|
+    option.choice name: 'Text to Morse', value: 1
+    option.choice name: 'Morse to Text', value: 2
+    option.choice name: 'Text to WAV File', value: 3
+    option.choice name: 'Exit', value: 4
+  end
+
+  exit if mode == 4
+
+  user_input = prompt.ask('Type a text:')
+
+  # переключение режимов
+  puts Telegraph.text_to_morse(user_input) if mode == 1
+  puts Telegraph.morse_to_text(user_input) if mode == 2
+  puts Telegraph::MorseWave.text_to_wave(user_input) if mode == 3
 end
-
-exit if mode == 4
-
-user_input = prompt.ask('Type a text:')
-
-# переключение режимов
-puts Telegraph.text_to_morse(user_input) if mode == 1
-puts Telegraph.morse_to_text(user_input) if mode == 2
-puts Telegraph::MorseWave.text_to_wave(user_input) if mode == 3
