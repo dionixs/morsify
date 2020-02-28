@@ -1,7 +1,4 @@
 #!/usr/bin/env ruby
-#
-# encoding: UTF-8
-#
 # frozen_string_literal: true
 
 require 'tty-prompt'
@@ -33,17 +30,13 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit
 end
 
-encode = -> (text) { Telegraph.text_to_morse(text) }
-decode = -> (morse) { Telegraph.morse_to_text(morse) }
-wave = -> (text) { MorseWave.text_to_wave(text) }
+encode = ->(text) { Telegraph.text_to_morse(text) }
+decode = ->(morse) { Telegraph.morse_to_text(morse) }
+wave = ->(text) { MorseWave.text_to_wave(text) }
 
-options.each do |key, value|
-  result = encode.call(value) if key.to_s == 'encode'
-  result = decode.call(value) if key.to_s == 'decode'
-  result = wave.call(value) if key.to_s == 'wave'
-  puts result
-  exit if !result.nil?
-end
+puts encode.call(options[:encode]) if options[:encode]
+puts decode.call(options[:decode]) if options[:decode]
+puts wave.call(options[:wave]) if options[:wave]
 
 # Сценарий на случай того если пользователь
 # запустил программу без аргументов командной строки
@@ -62,7 +55,7 @@ if options == {}
   user_input = prompt.ask('Type a text:')
 
   # переключение режимов
-  puts Telegraph.text_to_morse(user_input) if mode == 1
-  puts Telegraph.morse_to_text(user_input) if mode == 2
-  puts MorseWave.text_to_wave(user_input) if mode == 3
+  puts encode.call(user_input) if mode == 1
+  puts decode.call(user_input) if mode == 2
+  puts wave.call(user_input) if mode == 3
 end

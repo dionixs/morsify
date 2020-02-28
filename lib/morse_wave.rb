@@ -1,5 +1,3 @@
-# encoding: UTF-8
-#
 # frozen_string_literal: true
 
 require 'wavefile'
@@ -61,10 +59,10 @@ module MorseWave
   # метод который заменяет: (,.?!) на их названия
   def self.replace_chars(letters)
     replacements = {
-        "," => "comma",
-        "." => "dot",
-        "!" => 'exclamation',
-        "?" => 'question'
+      ',' => 'comma',
+      '.' => 'dot',
+      '!' => 'exclamation',
+      '?' => 'question'
     }
 
     letters.map do |letter|
@@ -89,7 +87,7 @@ module MorseWave
     # после чего переходим в директорию
     generate_dir(name_of_folder)
 
-    Writer.new(file_of_name, Format.new(:mono, :pcm_16, 44100)) do |writer|
+    Writer.new(file_of_name, Format.new(:mono, :pcm_16, 44_100)) do |writer|
       paths.each do |file_name|
         Reader.new(file_name).each_buffer do |buffer|
           writer.write(buffer)
@@ -129,4 +127,3 @@ module MorseWave
     Dir.chdir(name_of_folder)
   end
 end
-
