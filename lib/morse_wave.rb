@@ -40,8 +40,11 @@ module MorseWave
     # массив путей к файлам
     paths = []
 
-    # массив букв где пробел заменен на 'separator'
+    # массив букв где пробел заменен на 'pause'
     chars = replace_white_space(letters)
+
+    # массив символов где (,.?!) заменены на их названия
+    chars = replace_chars(chars)
 
     # создаем массив путей к файлам
     chars.each { |char| paths << CURRENT_PATH + '/src/sound/' + char + '.wav' }
@@ -50,9 +53,27 @@ module MorseWave
     paths
   end
 
-  # метод который заменяет пробелы на 'separator'
+  # метод который заменяет пробелы на 'pause'
   def self.replace_white_space(letters)
-    letters.map { |letter| letter == ' ' ? 'separator' : letter }
+    letters.map { |letter| letter == ' ' ? 'pause' : letter }
+  end
+
+  # метод который заменяет: (,.?!) на их названия
+  def self.replace_chars(letters)
+    replacements = {
+        "," => "comma",
+        "." => "dot",
+        "!" => 'exclamation',
+        "?" => 'question'
+    }
+
+    letters.map do |letter|
+      if replacements.key?(letter)
+        replacements[letter]
+      else
+        letter
+      end
+    end
   end
 
   # метод который сохраняет звуки азбуки морзе в один файл
@@ -68,7 +89,7 @@ module MorseWave
     # после чего переходим в директорию
     generate_dir(name_of_folder)
 
-    Writer.new(file_of_name, Format.new(:stereo, :pcm_16, 44_100)) do |writer|
+    Writer.new(file_of_name, Format.new(:mono, :pcm_16, 44100)) do |writer|
       paths.each do |file_name|
         Reader.new(file_name).each_buffer do |buffer|
           writer.write(buffer)
