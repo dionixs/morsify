@@ -95,7 +95,7 @@ module MorseWave
       end
     end
     # возвращаем путь куда был сохранен файл
-    "the file was saved to: #{view_save_path}/#{file_of_name}"
+    "Generate wave file: #{view_save_path}/#{file_of_name}"
   end
 
   # метод который проверяет, существуют ли файлы по заданному пути
