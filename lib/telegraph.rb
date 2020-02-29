@@ -12,10 +12,10 @@ module Telegraph
 
   # Morse to Text
   #
-  # Для упрощения в режиме morse_to_text:
+  # В режиме morse_to_text:
   # Между одним символом азбуки морзе, используется один пробел.
-  # Между словами отступ равен 4 пробелам.
-  # К примеру: "... --- ...    ... --- ...".
+  # Между словами отступ равен 7 пробелам.
+  # К примеру: "... --- ...        ... --- ...".
   def self.morse_to_text(morse, language = :en)
     # выбор словаря для расшифровки
     dict = MorseCode.choose_dictionary(language)
@@ -46,17 +46,20 @@ module Telegraph
     convert_letters = []
 
     letters.each do |item|
-      if ENCODE_DICT.key?(item.to_sym)
-        x = ENCODE_DICT[item.to_sym] + ' '
-        convert_letters << x
+      letter = item.to_sym
+
+      if ENCODE_DICT.key?(letter)
+        convert_letters << LETTER_SPACE if letter != LETTER_SPACE
+        convert_letters << ENCODE_DICT[letter]
       end
     end
+
     convert_letters
   end
 
   # метод который разбивает строку на массив слов
   def self.to_words_array(morse)
-    morse.split('    ')
+    morse.split('       ')
   end
 
   # метод который разбивает слова, на символы азбуки морзе

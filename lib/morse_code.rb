@@ -7,6 +7,8 @@ module MorseCode
 
   EN_DECODE_DICT = LATIN.merge(NUMBERS).merge(PUNCTUATION_MARKS).invert
 
+  LETTER_SPACE = ' '
+
   # выбор словаря для расшифровки
   def self.choose_dictionary(language)
     if language == :en

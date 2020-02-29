@@ -64,7 +64,7 @@ module MorseDictionaries
       '@': '.--.-.',
       '¿': '..-.-',
       '¡': '--...-',
-      ' ': '  '
+      ' ': '     '
   }
 
   RUSSIAN = {
