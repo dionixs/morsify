@@ -11,6 +11,20 @@ describe Telegraph do
       expect(Telegraph.text_to_morse('sos')).to eq '... --- ...'
     end
 
+    it 'two words' do
+      expect(Telegraph.text_to_morse('sos sos')).to eq '... --- ...       ... --- ...'
+    end
+
+    it 'russian text' do
+      expect(Telegraph.text_to_morse('Это простой тест.')).to eq(
+      '..-.. - ---       .--. .-. --- ... - --- .---       - . ... - .-.-.-')
+    end
+
+    it 'string of russian letters' do
+      expect(Telegraph.text_to_morse('Это кусок строки русских букв')).to eq(
+      '..-.. - ---       -.- ..- ... --- -.-       ... - .-. --- -.- ..       .-. ..- ... ... -.- .. ....       -... ..- -.- .--')
+    end
+
     it 'a simple text' do
       expect(Telegraph.text_to_morse('Lorem ipsum dolor.')).to eq(
       '.-.. --- .-. . --       .. .--. ... ..- --       -.. --- .-.. --- .-. .-.-.-')
@@ -36,7 +50,4 @@ describe Telegraph do
     it "a single space separation between morse letters" do
       expect(Telegraph.text_to_morse("ab")).to eq ".- -..."
     end
-
-  
-
 end
