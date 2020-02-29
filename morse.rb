@@ -3,14 +3,14 @@
 
 require 'tty-prompt'
 require 'optparse'
-require_relative 'lib/morse_code.rb'
+require_relative 'lib/ib/morse_code.rb'
 require_relative 'lib/telegraph'
 require_relative 'lib/morse_wave'
 
 options = {}
 
 optparse = OptionParser.new do |opts|
-  opts.banner = 'Usage: morse.rb [options]'
+  opts.banner = 'Usage: morse [options]'
 
   opts.on('-h', '--help', 'Prints this help') do
     puts opts

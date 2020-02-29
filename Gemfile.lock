@@ -20,7 +20,6 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
-    translit (0.1.5)
     tty-color (0.5.1)
     tty-cursor (0.7.1)
     tty-prompt (0.20.0)
@@ -40,7 +39,6 @@ PLATFORMS
 
 DEPENDENCIES
   rspec
-  translit
   tty-prompt
   wavefile
 
