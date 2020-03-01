@@ -59,7 +59,7 @@ module Telegraph
 
   # метод который разбивает строку на массив слов
   def self.to_words_array(morse)
-    morse.split('       ')
+    morse.split(' ' * 7)
   end
 
   # метод который разбивает слова, на символы азбуки морзе
