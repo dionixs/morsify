@@ -55,6 +55,9 @@ module Telegraph
       if ENCODE_DICT.key?(letter)
         convert_letters << LETTER_SPACE if letter != LETTER_SPACE
         convert_letters << ENCODE_DICT[letter]
+      else
+        puts "[WARNING] Module Telegraph can support this #{letter}"
+        convert_letters << letter
       end
     end
 

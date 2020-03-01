@@ -50,4 +50,8 @@ describe Telegraph do
     it "a single space separation between morse letters" do
       expect(Telegraph.text_to_morse("ab")).to eq ".- -..."
     end
+
+    it "unsupported char" do
+      expect(Telegraph.text_to_morse("我是中国人")).to eq ('我是中国人')
+    end
 end
