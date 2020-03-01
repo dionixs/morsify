@@ -4,10 +4,12 @@ module Telegraph
   include MorseCode
 
   def self.text_to_morse(text)
-    # массив букв включая пробелы
-    letters = to_letters_array(text.strip.upcase)
-    # результат конвертирования
-    convert_letters(letters).join('').strip
+    if !text.nil?
+      # массив букв включая пробелы
+      letters = to_letters_array(text.strip.upcase)
+      # результат конвертирования
+      convert_letters(letters).join('').strip
+    end
   end
 
   # Morse to Text
@@ -17,21 +19,23 @@ module Telegraph
   # Между словами отступ равен 7 пробелам.
   # К примеру: "... --- ...        ... --- ...".
   def self.morse_to_text(morse, language = :en)
-    # выбор словаря для расшифровки
-    dict = MorseCode.choose_dictionary(language)
+    if !morse.nil?
+      # выбор словаря для расшифровки
+      dict = MorseCode.choose_dictionary(language)
 
-    # массив слов
-    words = to_words_array(morse)
+      # массив слов
+      words = to_words_array(morse)
 
-    # массив, содержащий вложенные массивы
-    # в которых слова разбиты на символы азбуки морзе
-    letters = words_to_morse_char(words)
+      # массив, содержащий вложенные массивы
+      # в которых слова разбиты на символы азбуки морзе
+      letters = words_to_morse_char(words)
 
-    # массив расшифрованных букв
-    convert_letters = decode_chars(dict, letters)
+      # массив расшифрованных букв
+      convert_letters = decode_chars(dict, letters)
 
-    # результат конвертирования
-    convert_letters.join('')
+      # результат конвертирования
+      convert_letters.join('')
+    end
   end
 
   private

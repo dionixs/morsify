@@ -15,20 +15,22 @@ module MorseWave
   CURRENT_PATH = File.expand_path('../', ORIGINAL_PATH)
 
   def self.text_to_wave(text)
-    # разбиваем слово на буквы, включая пробелы
-    letters = text.downcase.strip.split('')
+    if !text.nil?
+      # разбиваем слово на буквы, включая пробелы
+      letters = text.downcase.strip.split('')
 
-    # массив путей к файлам
-    paths = to_paths_array(letters)
+      # массив путей к файлам
+      paths = to_paths_array(letters)
 
-    # проверка существуют ли файлы по заданному пути
-    check_paths(paths)
+      # проверка существуют ли файлы по заданному пути
+      check_paths(paths)
 
-    # создаем имя будущего файла
-    file_of_name = generate_file_name
+      # создаем имя будущего файла
+      file_of_name = generate_file_name
 
-    # cохраняем файл в формате .wav
-    write_to_wave(file_of_name, paths)
+      # cохраняем файл в формате .wav
+      write_to_wave(file_of_name, paths)
+    end
   end
 
   private
@@ -59,10 +61,10 @@ module MorseWave
   # метод который заменяет: (,.?!) на их названия
   def self.replace_chars(letters)
     replacements = {
-      ',' => 'comma',
-      '.' => 'dot',
-      '!' => 'exclamation',
-      '?' => 'question'
+        ',' => 'comma',
+        '.' => 'dot',
+        '!' => 'exclamation',
+        '?' => 'question'
     }
 
     letters.map do |letter|
