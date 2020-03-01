@@ -15,7 +15,7 @@ module MorseWave
   CURRENT_PATH = File.expand_path('../', ORIGINAL_PATH)
 
   def self.text_to_wave(text)
-    if !text.nil?
+    unless text.nil?
       # разбиваем слово на буквы, включая пробелы
       letters = text.downcase.strip.split('')
 
@@ -61,10 +61,10 @@ module MorseWave
   # метод который заменяет: (,.?!) на их названия
   def self.replace_chars(letters)
     replacements = {
-        ',' => 'comma',
-        '.' => 'dot',
-        '!' => 'exclamation',
-        '?' => 'question'
+      ',' => 'comma',
+      '.' => 'dot',
+      '!' => 'exclamation',
+      '?' => 'question'
     }
 
     letters.map do |letter|
@@ -103,7 +103,7 @@ module MorseWave
   # метод который проверяет, существуют ли файлы по заданному пути
   def self.check_paths(paths)
     paths.each do |path|
-      abort "Файл #{path} не найден!" unless File.exist?(path)
+      abort "File #{path} does not exist!" unless File.exist?(path)
     end
   end
 

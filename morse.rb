@@ -39,7 +39,11 @@ wave = ->(text) { MorseWave.text_to_wave(text) }
 
 puts encode.call(options[:encode]) if options[:encode]
 puts decode.call(options[:decode]) if options[:decode] && !options[:ru]
-puts to_cyrillic.call(options[:decode], options[:ru]) if options[:decode] && options[:ru]
+
+if options[:decode] && options[:ru]
+  puts to_cyrillic.call(options[:decode], options[:ru])
+end
+
 puts wave.call(options[:wave]) if options[:wave]
 
 # Сценарий на случай того если пользователь

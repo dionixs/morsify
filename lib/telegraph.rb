@@ -4,7 +4,7 @@ module Telegraph
   include MorseCode
 
   def self.text_to_morse(text)
-    if !text.nil?
+    unless text.nil?
       # массив букв включая пробелы
       letters = to_letters_array(text.strip.upcase)
       # результат конвертирования
@@ -19,7 +19,7 @@ module Telegraph
   # Между словами отступ равен 7 пробелам.
   # К примеру: "... --- ...        ... --- ...".
   def self.morse_to_text(morse, language = :en)
-    if !morse.nil?
+    unless morse.nil?
       # выбор словаря для расшифровки
       dict = MorseCode.choose_dictionary(language)
 
