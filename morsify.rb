@@ -11,7 +11,7 @@ require_relative 'lib/morse_wave'
 options = {}
 
 optparse = OptionParser.new do |opts|
-  opts.banner = 'Usage: morse.rb [options]'
+  opts.banner = 'Usage: morsify [options]'
 
   opts.on('-h', '--help', 'Prints this help') do
     puts opts
