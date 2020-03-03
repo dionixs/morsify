@@ -19,4 +19,10 @@ module MorseCode
       RU_DECODE_DICT
     end
   end
+
+  def self.lang_support?(lang)
+    if lang != :en && lang != :ru
+      abort "The current language is not supported"
+    end
+  end
 end
