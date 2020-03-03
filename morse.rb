@@ -64,7 +64,7 @@ if options == {}
 
   lang = prompt.ask('Select language for decode (en/ru):').to_sym if mode == 2
 
-  if lang != :en && lang != :ru
+  if mode == 2 && lang != :en && lang != :ru
       abort "The current language is not supported"
   end
 

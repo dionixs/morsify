@@ -6,6 +6,7 @@ require 'pathname'
 # Данный модуль, отвечает за запись фразы, в файл в формате .wav
 module MorseWave
   include WaveFile
+  include Telegraph
 
   # Текущий путь к папке с программой
   ORIGINAL_PATH = Pathname(__dir__)
@@ -14,7 +15,9 @@ module MorseWave
   # Возвращает в родительский католог
   CURRENT_PATH = File.expand_path('../', ORIGINAL_PATH)
 
-  def self.text_to_wave(text)
+  def self.text_to_wave(morse)
+    text = Telegraph.morse_to_text(morse)
+
     unless text.nil?
       # разбиваем слово на буквы, включая пробелы
       letters = text.downcase.strip.split('')
