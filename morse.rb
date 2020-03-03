@@ -62,8 +62,14 @@ if options == {}
 
   user_input = prompt.ask('Type a text:')
 
+  lang = prompt.ask('Select language for decode (en/ru):').to_sym if mode == 2
+
+  if lang != :en && lang != :ru
+      abort "The current language is not supported"
+  end
+
   # переключение режимов
   puts encode.call(user_input) if mode == 1
-  puts Telegraph.morse_to_text(user_input) if mode == 2
+  puts Telegraph.morse_to_text(user_input, lang) if mode == 2
   puts wave.call(user_input) if mode == 3
 end
