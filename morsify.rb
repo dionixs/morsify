@@ -28,7 +28,7 @@ begin
   optparse.parse!
 rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   puts 'Нераспознанный параметр!'
-  puts 'По команде «morse -h» можно получить дополнительную информацию.'
+  puts 'По команде «morsify -h» можно получить дополнительную информацию.'
   exit
 end
 
