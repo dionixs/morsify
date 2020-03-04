@@ -12,17 +12,11 @@ module MorseCode
   LETTER_SPACE = ' '
 
   # выбор словаря для расшифровки
-  def self.choose_dictionary(language)
-    if language == :en
-      EN_DECODE_DICT
-    else
-      RU_DECODE_DICT
-    end
+  def self.choose_dictionary(lang)
+    lang == :en ? EN_DECODE_DICT : RU_DECODE_DICT
   end
 
   def self.lang_support?(lang)
-    if lang != :en && lang != :ru
-      abort "The current language is not supported"
-    end
+    lang != :en && lang != :ru
   end
 end

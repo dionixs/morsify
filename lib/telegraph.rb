@@ -76,9 +76,9 @@ module Telegraph
     chars = []
 
     # разбиваем слова на символы азбуки морзе
-    words.each do |item|
-      chars << item.split(' ')
-    end
+    words.each { |item|  chars << item.split(' ') }
+
+    # возвращаем массив, содержащий вложенные массивы
     chars
   end
 

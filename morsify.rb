@@ -66,7 +66,7 @@ if options == {}
 
   lang = lang.to_sym if mode == 2
 
-  MorseCode.lang_support?(lang) if mode == 2
+  abort "The current language is not supported!" if MorseCode.lang_support?(lang) && mode == 2
 
   # переключение режимов
   puts encode.call(user_input) if mode == 1
