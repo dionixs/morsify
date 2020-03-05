@@ -52,6 +52,8 @@ module Telegraph
     letters.each do |item|
       letter = item.to_sym
 
+      letter = :Е if letter == :Ё
+
       if ENCODE_DICT.key?(letter)
         convert_letters << LETTER_SPACE if letter != LETTER_SPACE
         convert_letters << ENCODE_DICT[letter]

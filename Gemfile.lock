@@ -1,12 +1,23 @@
+PATH
+  remote: .
+  specs:
+    morsify (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    coderay (1.1.2)
     diff-lcs (1.3)
     equatable (0.6.1)
+    method_source (0.9.2)
     necromancer (0.5.1)
     pastel (0.7.3)
       equatable (~> 0.6)
       tty-color (~> 0.5)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -38,12 +49,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (~> 2.1.2)
+  morsify!
+  pry (~> 0.12.2)
+  rake (~> 13.0, >= 13.0.1)
   rspec
-  tty-prompt
-  wavefile
-
-RUBY VERSION
-   ruby 2.7.0p0
+  tty-prompt (~> 0.20.0)
+  wavefile (~> 1.1, >= 1.1.1)
 
 BUNDLED WITH
    2.1.2

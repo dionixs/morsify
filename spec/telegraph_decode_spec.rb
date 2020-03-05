@@ -1,31 +1,29 @@
 # frozen_string_literal: true
 
-require_relative '../lib/morse_dictionaries.rb'
-require_relative '../lib/morse_code.rb'
-require_relative '../lib/telegraph.rb'
+require 'morsify'
 
-describe Telegraph do
+describe Morsify do
   # Тесты для режима decode
   it 'one morse word' do
-    expect(Telegraph.morse_to_text('... --- ...')).to eq 'SOS'
+    expect(Morsify.decode('... --- ...')).to eq 'SOS'
   end
 
   it 'two morse words' do
-    expect(Telegraph.morse_to_text('... --- ...       ... --- ...')).to eq 'SOS SOS'
+    expect(Morsify.decode('... --- ...       ... --- ...')).to eq 'SOS SOS'
   end
 
   it 'morse to russian text' do
-    expect(Telegraph.morse_to_text(
+    expect(Morsify.decode(
              '..-.. - ---       .--. .-. --- ... - --- .---       - . ... - .-.-.-', :ru
            )).to eq ('ЭТО ПРОСТОЙ ТЕСТ.')
   end
 
   it 'punctuation marks' do
-    expect(Telegraph.morse_to_text('.-.-.- --..-- ---... ..--..')).to eq '.,:?'
+    expect(Morsify.decode('.-.-.- --..-- ---... ..--..')).to eq '.,:?'
   end
 
   it 'basic math operators' do
-    expect(Telegraph.morse_to_text(
+    expect(Morsify.decode(
              '...-- .-.-. .---- ----- ----- -....- -.--. ..--- -..- ..... -.--.- -..-. .---- ----- -...- ..--- ----. ----.'
            )).to eq(
              '3+100-(2X5)/10=299'
@@ -33,15 +31,15 @@ describe Telegraph do
   end
 
   it 'a seven space separation between morse words' do
-    expect(Telegraph.morse_to_text('.-       -...')).to eq 'A B'
+    expect(Morsify.decode('.-       -...')).to eq 'A B'
   end
 
   it 'a single space separation between morse letters' do
-    expect(Telegraph.morse_to_text('.- -...')).to eq 'AB'
+    expect(Morsify.decode('.- -...')).to eq 'AB'
   end
 
   it 'Lorem Ipsum' do
-    expect(Telegraph.morse_to_text(
+    expect(Morsify.decode(
              '.-.. --- .-. . --       .. .--. ... ..- --       -.. --- .-.. --- .-.       ... .. -       .- -- . -'
            )).to eq ('LOREM IPSUM DOLOR SIT AMET')
   end

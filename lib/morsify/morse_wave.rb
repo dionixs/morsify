@@ -13,7 +13,7 @@ module MorseWave
 
   # Путь необходимый для создания массива путей к файлам.
   # Возвращает в родительский католог
-  CURRENT_PATH = File.expand_path('../', ORIGINAL_PATH)
+  CURRENT_PATH = File.expand_path('../../', ORIGINAL_PATH)
 
   def self.text_to_wave(morse)
     text = Telegraph.morse_to_text(morse)

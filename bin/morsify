@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'morsify'
+
+options = Morsify::Parser.parse(ARGV)
+Morsify::Parser.handler(options)
+
+if options == {}
+  Morsify::Prompt.tty
+end
+
+

@@ -1,9 +1,6 @@
-# frozen_string_literal: true
+source "https://rubygems.org"
 
-source 'https://rubygems.org'
+# Specify your gem's dependencies in crop_tracker.gemspec
+gemspec
 
-ruby '2.7.0'
-
-gem 'rspec'
-gem 'tty-prompt'
-gem 'wavefile'
+gem 'rspec', :require => 'spec'
