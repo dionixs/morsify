@@ -1,6 +1,4 @@
 .idea
-data/*
-append.wav
 records/*
 .byebug_history
 /.bundle/
@@ -11,4 +9,4 @@ records/*
 /pkg/
 /spec/reports/
 /tmp/
-morsify-0.1.0.gem
+*.gem
