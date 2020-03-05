@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'optparse'
 
 module Morsify
   class Parser
-    def self.parse(args)
+    def self.parse(_args)
       options = {}
 
       optparse = OptionParser.new do |opts|

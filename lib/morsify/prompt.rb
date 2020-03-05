@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tty-prompt'
 
 module Morsify
@@ -18,11 +20,15 @@ module Morsify
 
       user_input = prompt.ask('Type a text:')
 
-      lang = prompt.ask('Select language for decode (en/ru):', value: "en") if mode == 2
+      if mode == 2
+        lang = prompt.ask('Select language for decode (en/ru):', value: 'en')
+      end
 
       lang = lang.to_sym if mode == 2
 
-      abort "The current language is not supported!" if MorseCode.lang_support?(lang) && mode == 2
+      if MorseCode.lang_support?(lang) && mode == 2
+        abort 'The current language is not supported!'
+      end
 
       # переключение режимов
       puts Telegraph.text_to_morse(user_input) if mode == 1

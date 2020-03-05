@@ -1,7 +1,5 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'morsify/version'
+# encoding: utf-8
+require_relative 'lib/morsify/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "morsify"
@@ -24,14 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.executables = ["morsify"]
   spec.require_paths = ["lib"]
-  spec.files  = [
-      "lib/morsify/morse_dictionaries.rb",
-      "lib/morsify/morse_code.rb",
-      "lib/morsify/telegraph.rb",
-      "lib/morsify/morse_wave.rb",
-      "lib/morsify/cli.rb",
-      "lib/morsify/prompt.rb"
-  ]
+  spec.files = Dir["lib/**/*", "src/**/*"]
 
   spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
   spec.add_development_dependency 'bundler', '~> 2.1.2'

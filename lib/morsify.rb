@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'morsify/version'
 require 'morsify/morse_dictionaries'
 require 'morsify/morse_code'
