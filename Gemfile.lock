@@ -1,7 +1,9 @@
 PATH
   remote: .
   specs:
-    morsify (0.1.1)
+    morsify (0.1.2)
+      tty-prompt (~> 0.20.0)
+      wavefile (~> 1.1, >= 1.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -54,8 +56,6 @@ DEPENDENCIES
   pry (~> 0.12.2)
   rake (~> 13.0, >= 13.0.1)
   rspec
-  tty-prompt (~> 0.20.0)
-  wavefile (~> 1.1, >= 1.1.1)
 
 BUNDLED WITH
    2.1.2
