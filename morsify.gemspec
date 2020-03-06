@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["dionixs"]
   spec.email         = ["dionixs@tutanota.com"]
 
-  spec.summary       = %q{Morse code encoder and decoder (text/audio)}
+  spec.summary       = %q{Morse code encoder and decoder with supports Latin, Cyrillic.}
   spec.homepage      = "https://github.com/dionixs/morsify"
   spec.license       = "MIT"
 
