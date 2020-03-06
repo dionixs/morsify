@@ -17,7 +17,7 @@ gem 'morsify'
 $ bundle
 ```
 
-Или установите пакет  `morsify` из [Rubygems](https://rubygems.org/gems/morsify:):
+Или установите пакет  `morsify` из [Rubygems](https://rubygems.org/gems/morsify):
 
 ```
 gem install morsify
@@ -126,6 +126,6 @@ bundle exec rake spec
 
 #### Ресурсы
 
-* [Азбука Морзе](https://ru.wikipedia.org/wiki/%D0%90%D0%B7%D0%B1%D1%83%D0%BA%D0%B0_%D0%9C%D0%BE%D1%80%D0%B7%D0%B5:)
+* [Азбука Морзе](https://ru.wikipedia.org/wiki/%D0%90%D0%B7%D0%B1%D1%83%D0%BA%D0%B0_%D0%9C%D0%BE%D1%80%D0%B7%D0%B5)
 
-* [Wavefile](https://github.com/jstrait/wavefile:)
+* [Wavefile](https://github.com/jstrait/wavefile)
