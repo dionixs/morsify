@@ -3,5 +3,5 @@
 # lib/morsify/version.rb
 
 module Morsify
-  VERSION = '0.1.2'
+  VERSION = '0.1.4'
 end
