@@ -10,3 +10,4 @@ records/*
 /spec/reports/
 /tmp/
 *.gem
+.rakeTasks
