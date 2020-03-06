@@ -18,7 +18,7 @@ module Morsify
         opts.on('-e TEXT', '--encode TEXT', 'Text to Morse') { |o| options[:encode] = o }
         opts.on('-d MORSE_CODE', '--decode MORSE_CODE', 'Morse to Text') { |o| options[:decode] = o }
         opts.on('-c', '--cyrillic') { |o| options[:ru] = o }
-        opts.on('-w TEXT', '--wave TEXT', 'Text to WAV File') { |o| options[:wave] = o }
+        opts.on('-w MORSE_CODE', '--wave MORSE_CODE', 'Morse to WAV File') { |o| options[:wave] = o }
       end
 
       begin
