@@ -98,6 +98,7 @@ Usage: morsify [options]
     -d, --decode MORSE_CODE          Morse to Text
     -c, --cyrillic
     -w, --wave MORSE_CODE            Morse to WAV File
+    -v, --version
 ```
 
 ```bash

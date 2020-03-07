@@ -19,6 +19,7 @@ module Morsify
         opts.on('-d MORSE_CODE', '--decode MORSE_CODE', 'Morse to Text') { |o| options[:decode] = o }
         opts.on('-c', '--cyrillic') { |o| options[:ru] = o }
         opts.on('-w MORSE_CODE', '--wave MORSE_CODE', 'Morse to WAV File') { |o| options[:wave] = o }
+        opts.on('-v', '--version') { |o| options[:version] = o }
       end
 
       begin
@@ -33,6 +34,8 @@ module Morsify
     end
 
     def self.handler(options)
+      puts VERSION if options[:version]
+
       encode = ->(text) { Telegraph.text_to_morse(text) }
       decode = ->(morse) { Telegraph.morse_to_text(morse) }
       to_cyrillic = ->(morse, lang) { Telegraph.morse_to_text(morse, lang) }
