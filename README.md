@@ -130,3 +130,7 @@ bundle exec rake spec
 * [Азбука Морзе](https://ru.wikipedia.org/wiki/%D0%90%D0%B7%D0%B1%D1%83%D0%BA%D0%B0_%D0%9C%D0%BE%D1%80%D0%B7%D0%B5)
 
 * [Wavefile](https://github.com/jstrait/wavefile)
+
+### License
+
+Code released under [MIT](https://github.com/dionixs/ttt-cli/blob/master/LICENSE) license.
