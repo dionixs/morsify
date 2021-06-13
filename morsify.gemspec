@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'morsify'
   spec.version       = Morsify::VERSION
   spec.authors       = ['dionixs']
-  spec.email         = ['dionixs@tutanota.com']
+  spec.email         = ['di0nixs@protonmail.com']
 
   spec.summary       = 'Morse code encoder and decoder with supports Latin, Cyrillic.'
   spec.homepage      = 'https://github.com/dionixs/morsify'
@@ -25,8 +25,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.files = Dir.glob('{bin,lib,src,spec}/**/*') + %w[LICENSE README.md]
 
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
-  spec.add_development_dependency 'bundler', '~> 2.1.2'
+  spec.required_ruby_version = ">=2.4.0"
+
+  spec.add_development_dependency 'bundler', '>= 2.2.10'
   spec.add_development_dependency 'pry', '~> 0.12.2'
   spec.add_development_dependency 'rake', '~> 13.0', '>= 13.0.1'
   spec.add_development_dependency 'rspec', '~> 3.9'
