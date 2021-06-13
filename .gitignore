@@ -11,3 +11,4 @@ records/*
 /tmp/
 *.gem
 .rakeTasks
+Gemfile.lock
