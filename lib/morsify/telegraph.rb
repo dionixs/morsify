@@ -32,9 +32,8 @@ module Telegraph
 
       # массив расшифрованных букв
       convert_letters = decode_chars(dict, letters)
-
       # результат конвертирования
-      convert_letters.join('')
+      convert_letters.join('').encode('utf-8')
     end
   end
 
